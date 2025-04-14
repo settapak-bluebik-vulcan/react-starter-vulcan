@@ -1,0 +1,71 @@
+{
+  "name": "react-starter-vulcan",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "node .husky/install.mjs",
+    "commit": "lint-staged && cz",
+    "dotenvx": "dotenvx",
+    "env:dev:dc": "dotenvx decrypt",
+    "env:dev:ec": "dotenvx encrypt",
+    "dotenvx:build": "dotenvx run -- sh -c 'pnpm build'",
+    "dotenvx:example": "pnpm env:dev:dc && pnpm run dev",
+    "env:uat:ec": "dotenvx encrypt -f .env.uat",
+    "env:uat:dc": "dotenvx decrypt -f .env.uat",
+    "env:prod:ec": "dotenvx encrypt -f .env.prod",
+    "env:prod:dc": "dotenvx decrypt -f .env.prod",
+    "env:all:dc": "pnpm env:dev:dc && pnpm env:uat:dc && pnpm env:prod:dc",
+    "env:all:ec": "pnpm env:dev:ec && pnpm env:uat:ec && pnpm env:prod:ec",
+    "dotenvx:dev": "dotenvx run -- pnpm dev",
+    "dotenvx:start": "dotenvx run -- pnpm start",
+    "dotenvx:start:uat": "dotenvx run -f .env.uat -- pnpm start",
+    "dotenvx:start:prod": "dotenvx run -f .env.prod -- pnpm start",
+    "start:example": "pnpm dotenvx run -f .env.prod -- sh -c 'react-router-serve ./build/server/index.js'"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.40.0",
+    "@react-router/fs-routes": "^7.5.0",
+    "@react-router/node": "^7.5.0",
+    "@react-router/serve": "^7.5.0",
+    "isbot": "^5.1.17",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.5.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.12.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@react-router/dev": "^7.5.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "commitizen": "^4.3.1",
+    "commitlint": "^19.8.0",
+    "cz-customizable": "^7.4.0",
+    "eslint": "^9.24.0",
+    "eslint-plugin-perfectionist": "^4.11.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "react-router-devtools": "^1.1.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./cz.config.cjs"
+    }
+  },
+  "version": "0.0.6"
+}

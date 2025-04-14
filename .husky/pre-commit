@@ -1,0 +1,3 @@
+pnpm env:all:ec
+npm version patch --no-git-tag-version
+git add .
